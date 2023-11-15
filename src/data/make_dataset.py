@@ -37,10 +37,10 @@ print("\nPercentage of Missing Values:\n", percentage_missing)
 missing_rows = df[df.isnull().any(axis=1)]
 print("Rows with Missing Values:\n", missing_rows)
 
-# Group by movie name, summing the user votes
+#group by movie name,
 top_movies = df.groupby('movie_name')['user_votes'].sum().sort_values(ascending=False).head(5)
 
-# Plotting the top 5 movies based on user votes
+#plot for the top 5 movies based on user votes
 plt.figure(figsize=(12, 6))
 sns.barplot(x=top_movies.values, y=top_movies.index, palette="viridis")
 plt.title('Top 5 Movies Based on User Votes')
