@@ -9,7 +9,7 @@ df = pd.read_csv("../../data/raw/top_english_movies.csv")
 
 print("Data Types:\n", df.dtypes)
 
-#convert string values with 'K' or 'M' to numeric
+#convert string
 def convert_votes_to_numeric(votes_str):
     if isinstance(votes_str, float):
         return int(votes_str)
@@ -50,7 +50,7 @@ plt.ylabel('Movie Name')
 plt.tight_layout()  #adjust layout so text fits
 plt.show()
 
-#KDE plot for user vote distribution
+#plot for user vote distribution
 plt.figure(figsize=(10, 6))
 sns.histplot(df['user_votes'], kde=True, bins=30, color='skyblue', edgecolor='black')
 plt.title('Distribution of User Votes')
@@ -71,8 +71,7 @@ aggregated_data['mean_movie_rating'] = df.groupby('movie_year')['movie_rating'].
 
 #save only the necessary columns
 aggregated_data[['movie_year', 'total_user_votes', 'mean_movie_rating']].to_csv(
-    "../../data/raw/aggregated_results.csv", index=False
-)
+    "../../data/raw/aggregated_results.csv", index=False)
 
 print(aggregated_data)
 
