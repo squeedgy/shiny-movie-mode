@@ -48,3 +48,29 @@ plt.xlabel('Total User Votes')
 plt.ylabel('Movie Name')
 plt.tight_layout()  #adjust layout so text fits
 plt.show()
+
+#KDE plot for user vote distribution
+plt.figure(figsize=(10, 6))
+sns.histplot(df['user_votes'], kde=True, bins=30, color='skyblue', edgecolor='black')
+plt.title('Distribution of User Votes')
+plt.xlabel('User Votes')
+plt.ylabel('Frequency')
+plt.show()
+
+aggregated_data = df.groupby('movie_year').agg({
+    'movie_rating': 'sum',
+    'user_votes': 'sum',
+}).reset_index()
+
+#sum total number of user votes per year
+aggregated_data['total_user_votes'] = df.groupby('movie_year')['user_votes'].sum().values
+
+#add a column and round the values
+aggregated_data['mean_movie_rating'] = df.groupby('movie_year')['movie_rating'].mean().round(2).values
+
+#save only the necessary columns
+aggregated_data[['movie_year', 'total_user_votes', 'mean_movie_rating']].to_csv(
+    "../../data/raw/aggregated_results.csv", index=False
+)
+
+print(aggregated_data)
