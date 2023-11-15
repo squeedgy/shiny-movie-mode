@@ -1,4 +1,4 @@
---This data science project aims to explore historical data of top-rated English movies, forecasting future trends in movie ratings, and detecting anomalies. Using data science techniques and time-series analysis, we delve into patterns that have emerged over the years in movie ratings and votes, predicting future trends, and identifying significant deviations.
+--This project aims to explore historical data of movies, forecasting future trends in movie ratings, and detecting anomalies. In this project, we delve into patterns that have emerged over the years in movie ratings and votes, predicting future trends, and identifying significant deviations.
 
 --Research Question
     Can we predict future trends in movie ratings and identify anomalies based on historical data?
