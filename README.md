@@ -1,9 +1,10 @@
---This project aims to explore historical data of movies, forecasting future trends in movie ratings, and detecting anomalies. In this project, you can delve into patterns that have emerged over the years in movie ratings and votes, predicting future trends, and identifying significant deviations.
+**Overview**:
+This project aims to explore historical data of movies, forecasting future trends in movie ratings, and detecting anomalies. In this project, you can delve into patterns that have emerged over the years in movie ratings and votes, predicting future trends, and identifying significant deviations.
 
---Research Question
+**Research Question**;
     Can we predict future trends in movie ratings and identify anomalies based on historical data?
 
---Dataset
+**Dataset**
     movie_name
     movie_year
     movie_rating
@@ -44,10 +45,10 @@
     threshold = 2 * df_aggregated['movie_rating'].std()
     anomalies = df_aggregated[abs(df_aggregated['movie_rating'] - df_aggregated['movie_rating'].mean()) > threshold]
 
---Results:
+**Results**:
     The project culminates in a model that can forecast movie rating trends and identify anomalous years, offering insights into the dynamics of the English movie industry.
 
-Getting Started:
+**Getting Started**:
     git clone https://github.com/squeedgy/shiny-movie-mode.git
     git cd movie-mode-ranking
 
