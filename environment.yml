@@ -12,3 +12,4 @@ dependencies:
   - jupyter
   - notebook
   - scipy
+  - statsmodels=0.13.0

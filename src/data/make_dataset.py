@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
+from statsmodels.tsa.seasonal import seasonal_decompose
 import matplotlib.pyplot as plt
 import seaborn as sns
 import re
+
 
 df = pd.read_csv("../../data/raw/top_english_movies.csv")
 
@@ -74,3 +76,49 @@ aggregated_data[['movie_year', 'total_user_votes', 'mean_movie_rating']].to_csv(
 )
 
 print(aggregated_data)
+
+print(df.columns)
+
+df['movie_year'] = pd.to_datetime(df['movie_year'], format='%Y')
+df.set_index('movie_year', inplace=True)
+
+#time series decomposition
+result = seasonal_decompose(df['movie_rating'], model='additive', period=1)  # Adjust 'period' if seasonality is present
+
+#visualization for line plot
+plt.figure(figsize=(12, 8))
+
+#time series
+plt.subplot(4, 1, 1)
+plt.plot(df.index, df['movie_rating'], label='Original Time Series', linestyle='-', marker='o')
+plt.title('Original Time Series')
+plt.xlabel('Year')
+plt.ylabel('Movie Rating')
+plt.legend()
+
+#trend
+plt.subplot(4, 1, 2)
+plt.plot(result.trend, label='Trend', linestyle='-', marker='o')
+plt.title('Trend Component')
+plt.xlabel('Year')
+plt.ylabel('Trend')
+plt.legend()
+
+#seasonal
+plt.subplot(4, 1, 3)
+plt.plot(result.seasonal, label='Seasonal', linestyle='-', marker='o')
+plt.title('Seasonal Component')
+plt.xlabel('Year')
+plt.ylabel('Seasonal')
+plt.legend()
+
+#residuals
+plt.subplot(4, 1, 4)
+plt.plot(result.resid, label='Residuals', linestyle='-', marker='o')
+plt.title('Residuals')
+plt.xlabel('Year')
+plt.ylabel('Residuals')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
