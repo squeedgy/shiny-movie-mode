@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import re
 
-
 df = pd.read_csv("../../data/raw/top_english_movies.csv")
 
 print("Data Types:\n", df.dtypes)
@@ -25,7 +24,7 @@ df['user_votes'] = df['user_votes'].apply(convert_votes_to_numeric)
 
 print(df.head())
 
-df_aggregated = df.resample('Y').mean()
+#df_aggregated = df.resample('Y').mean()
 
 #check for missing values
 missing_values = df.isnull().sum()
@@ -83,7 +82,7 @@ df['movie_year'] = pd.to_datetime(df['movie_year'], format='%Y')
 df.set_index('movie_year', inplace=True)
 
 #time series decomposition
-result = seasonal_decompose(df['movie_rating'], model='additive', period=1)  # Adjust 'period' if seasonality is present
+result = seasonal_decompose(df['movie_rating'], model='additive', period=1)
 
 #visualization for line plot
 plt.figure(figsize=(12, 8))
